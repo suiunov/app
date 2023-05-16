@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function Settings(){
     const [settings, setSettings] = useState({
@@ -112,7 +112,7 @@ export default function Settings(){
     const[fontSize, setFontSize] = useState(1)
     const[animationSpeed, setAnimationSpeed] = useState(1)
     return(
-        <div>
+        <div> 
             <div className="section d-block">
                 <h2>Primary theme</h2>
                 <div className="options-container">
@@ -172,7 +172,7 @@ export default function Settings(){
                         </button>
                     )}
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

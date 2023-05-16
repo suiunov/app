@@ -1,72 +1,48 @@
+import { Button } from "@mui/material"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import RestsCard from "./RestsCard"
 
 export default function ListsSection(){
-    const rests = [
-        
-        {
-            name: "Hong Ya",
-            img: "/img/top-chiefs/img_1.jpg",
-            recipesCount: "10",
-            cuisine: "Taiwan",
-        },
-        {
-            name: "Zero",
-            img: "/img/top-chiefs/img_2.jpg",
-            recipesCount: "05",
-            cuisine: "Taiwan",
-        },
-        {
-            name: "onenjoy",
-            img: "/img/top-chiefs/img_3.jpg",
-            recipesCount: "13",
-            cuisine: "Taiwan",
-        },
-        {
-            name: "Meimei",
-            img: "/img/top-chiefs/img_4.jpg",
-            recipesCount: "7am-1pm",
-            cuisine: "Taiwan"
-        }
-    ]
-    const lunch = [
-        {
-            name: "Vietnam",
-            img: "/img/top-chiefs/img_1.jpg",
-            recipesCount: "10",
-            cuisine: "Vietnam",
-        },
-        {
-            name: "Japan",
-            img: "/img/top-chiefs/img_2.jpg",
-            recipesCount: "05",
-            cuisine: "Japanese",
-        },
-        {
-            name: "Thailand",
-            img: "/img/top-chiefs/img_3.jpg",
-            recipesCount: "13",
-            cuisine: "Thailand",
-        },
-        {
-            name: "Moms Kitchen",
-            img: "/img/restaurants/hongya.jpg",
-            recipesCount: "09",
-            cuisine: "Taiwanese"
-        }
-    ]
 
+    const [breakfast , setBreakfast] = useState()
+    const [lunchDinner , setLunchDinner] = useState()
+
+
+    useEffect(() => {
+        axios.get('http://localhost:6060/api/v1/restaurants/find/breakfast')
+            .then((response) => {
+                setBreakfast(response.data?.restaurants);
+            });
+
+
+            axios.get('http://localhost:6060/api/v1/restaurants/find/lunchdinner')
+            .then((response) => {
+                setLunchDinner(response.data?.restaurants);
+            });
+
+    }, [ ])
+        
     return(
         <div className="section rests">
             <h1 className="title">Breakfast</h1>
-            <div className="lists-rests-container">
-                { rests.map (chief => <RestsCard key={chief.name} chief={chief} />) }
+            <div className="lists-rests-container" style={{marginBottom:"10px"}}>
+                { breakfast?.slice(0,4)?.map((chief, idx) => <RestsCard key={idx} chief={chief} path={'breakfast'} />) }  
             </div>
-            <br></br>
-            <h1 className="title">Lunch/Dinner</h1>
-            <div className="lists-rests-container">
-                { lunch.map (chief => <RestsCard key={chief.name} chief={chief} />) }
+              <Link to="/breakfast">
+              <Button size="small" color="error" variant="contained">More..</Button>
+             </Link>
+           
+            <br/><br />
+            <h1 className="title">Lunch & Dinner</h1>
+            <div className="lists-rests-container" style={{marginBottom:"10px"}}>
+                { lunchDinner?.slice(0,4)?.map ((chief, idx) => <RestsCard key={idx} chief={chief} path={'lunchdinner'} />) }
             </div>
+
+            <Link to="/lunchdinner"  > 
+                    <Button size="small" color="error" variant="contained">More..</Button>
+             </Link>
         </div>
-        
     )
 }

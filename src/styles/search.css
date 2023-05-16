@@ -1,0 +1,11 @@
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 0;
+}
+
+.recipe_card {
+  -webkit-flex-basis: 100% !important;
+  max-width: 100% !important;
+}
+.btn {
+  border-radius: 0 !important;
+}

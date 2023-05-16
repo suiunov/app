@@ -1,126 +1,68 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { Grid } from "@mui/material"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import PreviousSearches from "../components/PreviousSearches"
-import RecipeCard from "../components/RecipeCard"
 
-export default function Recipes(){
-    const recipes = [
-        {
-            title: "Tuna Burger",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-            description: "Tuna burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        }, 
-        {
-            title: "Sandwich",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Fried Rice",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Fried Noodle",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Tuna Burger",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        }, 
-        {
-            title: "Sandwich",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Fried Rice",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Fried Noodle",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Tuna Burger",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        }, 
-        {
-            title: "Sandwich",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Fried Rice",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Fried Noodle",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-            description: "Grill burgers, covered, on an oiled rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side. During the last minute of cooking, top each patty with 2 triangles American cheese and 1 triangle Swiss cheese. Serve on buns.",
-        },
-    ]
-    return(
-        <div>
-            <PreviousSearches />
-            <div className="recipes-container">
-            {/* <RecipeCard />*/}
-                {recipes.map((recipe, index) => 
-                    <RecipeCard key={index} recipe={recipe} />
-                )}
-            </div>
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Autocomplete from '@mui/material/Autocomplete'
+import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
+import { Box } from '@mui/system'
+import React from 'react'
+import ResRecipeCard from "../components/ResRecipeCard"
+import '../styles/search.css'
+
+
+export default function Recipes() {
+    const [product, setProduct] = useState([])
+    const [search, setSearch] = useState()
+
+    useEffect(() => {
+        axios.get(`http://localhost:6060/api/v1/products/search?q=${search ? search : "all"}`)
+            .then((response) => {
+                setProduct(response.data?.search);
+            });
+    }, [search])
+
+
+    return (
+        <div> 
+            <PreviousSearches setSearch={setSearch} product={product} /> 
+            <Box sx={{ display: "flex", marginBottom: "10px" }} >
+                <Stack spacing={2} sx={{ width: "100%" }} className="SearchBar">
+                    <Autocomplete
+                        sx={{ borderRadius: "0px" }}
+                        freeSolo
+                        id="free-solo-2-demo"
+                        className='optionbar'
+                        disableClearable
+                        options={product?.map((option) => option.name)}
+                        renderInput={(params) => (
+                            <TextField
+                                className='SearchBar'
+                                placeholder="Search your product"
+                                {...params}
+                                onSelect={e => (setSearch(e.target.value))}
+                                InputProps={{
+                                    ...params.InputProps,
+                                    type: 'search',
+                                }}
+                            />
+                        )}
+                    />
+                </Stack>
+                <Box className="btn">
+                    <FontAwesomeIcon icon={faSearch} />
+                </Box>
+            </Box> 
+            <div className="recipes-container"> 
+                <Grid container>
+                    {product?.map((recipe, index) =>
+                        <ResRecipeCard key={index} recipe={recipe} />
+                    )}
+                </Grid>
+            </div> 
         </div>
     )
 }

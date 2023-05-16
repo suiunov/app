@@ -1,0 +1,16 @@
+.button-sort {
+  padding: 10px 20px;
+  margin: 2px;
+  cursor: pointer;
+}
+#button-sort-now {
+  background: red;
+  color: white;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.d-flex-start {
+  display: flex;
+  justify-content: flex-start;
+}

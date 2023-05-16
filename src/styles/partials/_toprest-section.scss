@@ -9,6 +9,18 @@
     margin-top: 3em;
 }
 
+.c-btn{
+    display: flex;
+    justify-content: flex-end;
+    .btn{
+        margin-top: 1em;
+        padding-block: .5em;
+        padding-inline: 1em;
+        border-radius: 10px;
+    }
+  }
+  
+
 .chief-card{
     display: flex;
     height: 130px;

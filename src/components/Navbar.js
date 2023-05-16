@@ -1,9 +1,10 @@
-import{Link, useLocation} from "react-router-dom"
+import { Link, useLocation } from "react-router-dom";
 
-import { useState } from "react"
-import Sidebar from "./Sidebar"
+ 
+import { useState } from "react";
+import Sidebar from "./Sidebar";
 
-import { faHome, faList, faCog, faUtensils } from "@fortawesome/free-solid-svg-icons"
+import { faCog, faHome, faList, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar(){
     const [showSidebar, setShowSidebar] = useState(false)
@@ -16,20 +17,24 @@ export default function Navbar(){
         },
         {
             name: "Restaurants",
-            path: "/restaurants",
+            path: "/Restaurants",
             icon: faUtensils  
         },
         {
             name: "Recipes",
-            path: "/recipes",
+            path: "/Recipes",
             icon: faList
         },
         {
             name: "Settings",
-            path: "/settings",
+            path: "/Settings",
             icon: faCog
         },
-        
+        {
+            name: "Contact",
+            path: "/ContactUs",
+            icon: faCog
+        },
     ]
 
     function closeSidebar(){
@@ -50,7 +55,10 @@ export default function Navbar(){
                     <div className="bar"></div>
                 </div>
             </div>
-            { showSidebar && <Sidebar close={closeSidebar} links={links}/>}
+            
+            { showSidebar && <Sidebar close={closeSidebar} links={links}/>} 
+           
+        
             
         </>
     )

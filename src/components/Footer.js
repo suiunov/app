@@ -8,15 +8,14 @@ export default function Footer(){
             </div>
             <div className="footer-section">
                 <p className="title">Contact Us</p>
-                <p>smartmenu@gmail.com</p>
+                <p>zhsmartmenu@gmail.com</p>
                 <p>+886 975 36 98 84</p>
                 <p>974 Zhixue, Hualian</p>
             </div>
             <div className="footer-section">
                 <p className="title">Socials</p>
-                <p>Facebook</p>
-                <p>Twitter</p>
-                <p>Instagram</p>
+                <p><a href="https://www.facebook.com/suiunovn" target="_blank" rel="noreferrer">Facebook</a></p>
+                <p><a href="https://www.instagram.com/s_nooruzbek/" target="_blank" rel="noreferrer">Instagram</a></p>
             </div>
         </div>
     )
